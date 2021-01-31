@@ -1,0 +1,137 @@
+
+
+
+<div class="container col-md-6 offset-md-3 mt-5 pt-5 "  >
+  <h1> E-bank</h1>
+</div>
+
+<div class="container col-md-6 offset-md-3 mt-5 pt-5 "  >
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="annuityP"
+        data-toggle="tab"
+
+        role="tab"
+        aria-controls="annuity"
+        aria-selected="true"
+        (click)=" changeAction($event)"
+      >annuity</a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="capitalP"
+        data-toggle="tab"
+
+        role="tab"
+        aria-controls="capital"
+        aria-selected="false"
+        (click)=" changeAction($event)">Capital</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         id="durationP"
+         data-toggle="tab"
+
+         role="tab"
+         aria-controls="duration"
+         aria-selected="false"
+         (click)=" changeAction($event)">duration</a>
+    </li>
+  </ul>
+  <div class="card-body ">
+<form [formGroup]="creditForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+
+    <div *ngIf="action != 'annuityP'">
+      <div  class="col-md-offset-3 mb-3 mr-5">
+        <span class="font-weight-bold " style="color:#000000;"><label for="annuity">annuity</label></span>
+      <input
+        formControlName="annuity"
+        id="annuity"
+        class="form-control"
+        type="text"/>
+      </div>
+    </div>
+    <div *ngIf="action != 'capitalP'">
+      <div class="col-offset-md-3 mb-3 mr-5">
+        <span class="font-weight-bold " style="color:#000000;"> <label for="capital">Capital</label></span>
+      <input
+        formControlName="capital"
+        id ="capital"
+        class="form-control"
+        type="text"/>
+      </div>
+    </div>
+    <div class="col-offset-md-3 mb-3 mr-5">
+      <span class="font-weight-bold " style="color:#000000;"><label for="typeCredit">typeCredit</label> </span>
+      <input
+        formControlName="typeCredit"
+        id="typeCredit"
+        class="form-control"
+        type="text"/>
+    </div>
+    <div *ngIf="action != 'durationP'">
+      <div class="col-offset-md-3 mb-3 mr-5 ">
+        <span class="font-weight-bold " style="color:#000000;"> <label for="duration">Durée</label> </span>
+      <input
+        formControlName="duration"
+        id="duration"
+        class="form-control"
+        type="text"/>
+      </div>
+    </div>
+
+   <span *ngIf="(
+    !creditForm.get('duration').valid &&
+    !creditForm.get('capital').valid &&
+    !creditForm.get('typeCredit').valid)&&
+    (creditForm.get('duration').touched &&
+    creditForm.get('capital').touched &&
+    creditForm.get('typeCredit').touched)
+     "
+    class="help-block">Please enter a valid Data!</span>
+    </div>
+<!--            [disabled] = "!creditForm.get(['duration','capital','typeCredit']).valid"-->
+    <button type="submit"
+
+            [disabled] = " !(creditForm.get('typeCredit').valid && (
+    (creditForm.get('duration').valid && creditForm.get('capital').valid) ||
+     (creditForm.get('duration').valid && creditForm.get('annuity').valid) ||
+      (creditForm.get('annuity').valid && creditForm.get('capital').valid)
+      ))"
+
+            class="btn btn-outline-success my-2 my-sm-0 mr-4"
+            name="actionMethod"
+            value="process"> Process</button>
+
+
+
+<!--    <button type="button"-->
+<!--            class="btn btn-outline-success my-2 my-sm-0"-->
+<!--            name="actionMethod"-->
+<!--            value="getCredit">Get Credit</button>-->
+
+  </form>
+
+    <hr>
+    <div class="row" *ngIf="submitted">
+      <div class="col-xs-12">
+        <h3> You  Data</h3>
+        <p >annuity: {{this.credit.annuity}}</p>
+        <p >Capital: {{this.credit.capital}}</p>
+        <p >typeCredit: {{this.credit.typeCredit}}</p>
+        <p >duration: {{this.credit.duration}}</p>
+
+<!--        <p *ngIf="action != 'annuityP'">annuity: {{this.credit.annuity}}</p>-->
+<!--        <p *ngIf="action != 'capitalP'">Capital: {{this.credit.capital}}</p>-->
+<!--        <p >typeCredit: {{this.credit.typeCredit}}</p>-->
+<!--        <p *ngIf="action != 'durationP'">duration: {{this.credit.duration}}</p>-->
+      </div>
+    </div>
+
+  </div>
+</div>
