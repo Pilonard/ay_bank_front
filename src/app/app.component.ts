@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  imageBank = '../assets/img/BankBack.jpg';
+  imageBank = '../assets/img/BankBack2.jpg';
 }

@@ -1,0 +1,28 @@
+
+<div class="row my-1 offset-md-4 mt-5">
+
+  <div class="col-md-4 ">
+    <h2>List of user And admin</h2>
+  </div>
+
+</div>
+<div class="col-md-8 offset-2 mt-5">
+  <div class="row"  >
+    <div class="col-md-4  " *ngFor="let user of users let i = index">
+
+<div class="card back mt-2" style="width: 18rem;">
+  <img class="card-img-top" [src]="user.imgProfile" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"> <strong>Role : </strong>{{ user.admin === true ? 'Admin':'User'}} </h5>
+    <ul class="list-group ">
+
+          <li class="list-group-item"> <strong>First name:</strong> {{ user.firstName }} </li>
+      <li class="list-group-item"> <strong>Last name:</strong>  {{ user.lastName}}</li>
+          <li class="list-group-item"> <strong>Email</strong> {{ user.email }}</li>
+
+    </ul>
+  </div>
+</div>
+    </div>
+  </div>
+</div>

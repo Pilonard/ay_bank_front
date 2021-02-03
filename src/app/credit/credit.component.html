@@ -2,15 +2,15 @@
 
 
 <div class="container col-md-6 offset-md-3 mt-5 pt-5 "  >
-  <h1> E-bank</h1>
+  <h1> AYBank</h1>
 </div>
 
-<div class="container col-md-6 offset-md-3 mt-5 pt-5 "  >
+<div class="container col-md-6 offset-md-3 mt-5 pt-5 back"  >
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a
-        class="nav-link active"
+        class="nav-link active  "
         id="annuityP"
         data-toggle="tab"
 
@@ -18,7 +18,7 @@
         aria-controls="annuity"
         aria-selected="true"
         (click)=" changeAction($event)"
-      >annuity</a>
+      >Annuity</a>
     </li>
     <li class="nav-item">
       <a
@@ -39,7 +39,7 @@
          role="tab"
          aria-controls="duration"
          aria-selected="false"
-         (click)=" changeAction($event)">duration</a>
+         (click)=" changeAction($event)">Duration</a>
     </li>
   </ul>
   <div class="card-body ">
@@ -48,7 +48,7 @@
 
     <div *ngIf="action != 'annuityP'">
       <div  class="col-md-offset-3 mb-3 mr-5">
-        <span class="font-weight-bold " style="color:#000000;"><label for="annuity">annuity</label></span>
+        <span class="font-weight-bold "><label for="annuity" >Annuity</label></span>
       <input
         formControlName="annuity"
         id="annuity"
@@ -58,7 +58,7 @@
     </div>
     <div *ngIf="action != 'capitalP'">
       <div class="col-offset-md-3 mb-3 mr-5">
-        <span class="font-weight-bold " style="color:#000000;"> <label for="capital">Capital</label></span>
+        <span class="font-weight-bold" > <label for="capital" >Capital</label></span>
       <input
         formControlName="capital"
         id ="capital"
@@ -66,22 +66,36 @@
         type="text"/>
       </div>
     </div>
-    <div class="col-offset-md-3 mb-3 mr-5">
-      <span class="font-weight-bold " style="color:#000000;"><label for="typeCredit">typeCredit</label> </span>
-      <input
-        formControlName="typeCredit"
-        id="typeCredit"
-        class="form-control"
-        type="text"/>
-    </div>
+
     <div *ngIf="action != 'durationP'">
       <div class="col-offset-md-3 mb-3 mr-5 ">
-        <span class="font-weight-bold " style="color:#000000;"> <label for="duration">Durée</label> </span>
+        <span class="font-weight-bold " > <label for="duration">Duration</label> </span>
       <input
         formControlName="duration"
         id="duration"
         class="form-control"
         type="text"/>
+      </div>
+    </div>
+    <div class="col-offset-md-3 mb-3 mr-5">
+
+
+      <div class="form-group">
+        <span class="font-weight-bold " > <label for="typeCredit">Credit Type</label> </span>
+        <select
+          formControlName="typeCredit"
+          id="typeCredit"
+          class="form-control"
+          name="typeCredit"
+        >
+          <option
+            *ngFor="let typeCredit of typeCredits"
+            value="{{typeCredit}}">
+            {{ typeCredit }}
+          </option>
+
+
+        </select>
       </div>
     </div>
 
@@ -96,13 +110,18 @@
     class="help-block">Please enter a valid Data!</span>
     </div>
 <!--            [disabled] = "!creditForm.get(['duration','capital','typeCredit']).valid"-->
-    <button type="submit"
 
-            [disabled] = " !(creditForm.get('typeCredit').valid && (
+<!--    [disabled] = "(
     (creditForm.get('duration').valid && creditForm.get('capital').valid) ||
      (creditForm.get('duration').valid && creditForm.get('annuity').valid) ||
-      (creditForm.get('annuity').valid && creditForm.get('capital').valid)
-      ))"
+      (creditForm.get('annuity').valid && creditForm.get('capital').valid))
+      "-->
+    <button type="submit"
+            [disabled] = "
+      ((creditForm.get('duration').invalid && creditForm.get('capital').invalid)) ||
+      ((creditForm.get('duration').invalid && creditForm.get('annuity').invalid))||
+      ((creditForm.get('annuity').invalid && creditForm.get('capital').invalid) )"
+
 
             class="btn btn-outline-success my-2 my-sm-0 mr-4"
             name="actionMethod"
@@ -117,21 +136,83 @@
 
   </form>
 
-    <hr>
+
+</div>
+</div>
+
     <div class="row" *ngIf="submitted">
-      <div class="col-xs-12">
-        <h3> You  Data</h3>
-        <p >annuity: {{this.credit.annuity}}</p>
-        <p >Capital: {{this.credit.capital}}</p>
-        <p >typeCredit: {{this.credit.typeCredit}}</p>
-        <p >duration: {{this.credit.duration}}</p>
+    <div class="container col-md-6 offset-md-3  pt-5 back"  >
+      <hr>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+<!--          -->
+          <div class="card-header">
+            <h4>
+              You want to demand a credit ?
+            </h4>
+          </div>
+          <div class="card-body">
+<!--            <ul class="list-group ">-->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+              <span class="list-group-item"> <strong>Annuity:</strong> {{this.credit.annuity}}</span>
+              </div>
+              <div class="form-group col-md-6">
+              <span class="list-group-item"> <strong>Capital: </strong> {{this.credit.capital}}</span>
+              </div>
+                <div class="form-group col-md-6">
+              <span class="list-group-item"> <strong>Duration: </strong> {{this.credit.typeCredit}}</span>
+                </div>
+                  <div class="form-group col-md-6">
+              <span class="list-group-item"> <strong>Salary: </strong> {{this.credit.duration}}</span>
+
+                  </div>
+            </div>
+<!--            </ul>-->
+          </div>
+<!--          -->
+
+<!--  -->
+        </div>
+        <div class="form-group col-md-4 " >
+        <form [formGroup]="creditDemandForm" (ngSubmit)="onPersistCredit()">
+
+          <div class="form-group ">
+            <div class="card-header">
+            <h4>Enter your Salary</h4>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <div class="form-row">
+              <div class="form-group col-md-4 ">
+            <span class="font-weight-bold " > <label for="duration"> Salary</label> </span>
+            </div>
+              <div class="form-group  col-md-8 ">
+            <input
+              formControlName="salary"
+              id="salary"
+              class="form-control"
+              type="text"/>
+            </div>
+            <div class="form-group ">
+            <button class="btn btn-outline-success my-2 my-sm-0 mr-4"
+            name="getCredit"
+            value="process"> Demand Credit</button>
+            </div>
+          </div>
+          </div>
+
+        </form>
+          </div>
+        </div>
 
 <!--        <p *ngIf="action != 'annuityP'">annuity: {{this.credit.annuity}}</p>-->
 <!--        <p *ngIf="action != 'capitalP'">Capital: {{this.credit.capital}}</p>-->
 <!--        <p >typeCredit: {{this.credit.typeCredit}}</p>-->
 <!--        <p *ngIf="action != 'durationP'">duration: {{this.credit.duration}}</p>-->
       </div>
-    </div>
+<!--    </div>-->
 
   </div>
-</div>
+

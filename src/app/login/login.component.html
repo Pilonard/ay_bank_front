@@ -1,0 +1,99 @@
+<!--.row>.col-md-4.mt-5>form>.form-group>label[for=email]+input.form-control#email^.form-group>label[for=password]+input:password#password^button.btn.btn-block.btn-primary{login}
+-->
+<div class="col-md-4 mt-6 mx-auto ">
+  <h1 class="mt-4"> Authentication</h1>
+
+<ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a
+      class="nav-link active  textC"
+      id="annuityP"
+      data-toggle="tab"
+
+      role="tab"
+      aria-controls="annuity"
+      aria-selected="true"
+      (click)=" onSwitchMode()"
+    >Login</a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="capitalP"
+      data-toggle="tab"
+
+      role="tab"
+      aria-controls="capital"
+      aria-selected="false"
+      (click)=" onSwitchMode()">Sign Up</a>
+  </li>
+
+</ul>
+</div>
+<div class="row ">
+  <div class="col-md-4 mt-2 mx-auto">
+<div *ngIf="!isLoginMode">
+    <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstName" >First Name</label>
+          <input type="text" class="form-control" id="firstName"  placeholder="first name" formControlName="firstName">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName"  placeholder="last name"formControlName="lastName">
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="emailS">Email</label>
+          <input type="email" class="form-control" id="emailS" placeholder="Email" formControlName="emailS">
+        </div>
+        <div class="form-group ">
+          <label for="passwordS">Password</label>
+          <input type="password" class="form-control" id="passwordS" placeholder="Password"formControlName="passwordS">
+        </div>
+      <div class="form-group ">
+        <label for="imgProfile">Image Profile</label>
+        <input type="text" class="form-control" id="imgProfile" placeholder="image profile" formControlName="imgProfile">
+      </div>
+
+
+      <button class="btn btn-block btn-dark">Sign in</button>
+    </form>
+</div>
+    <div *ngIf="isLoginMode">
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input  formControlName="email" type="text" class="form-control" id="email" placeholder="Email">
+        <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').touched ||loginForm.get('email').dirty) ">
+          <div *ngIf="loginForm.get('email').getError('required')"> This field is required</div>
+          <div *ngIf="loginForm.get('email').getError('email')"> This field should be email address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password"  type="password" name="" id="password" class="form-control" placeholder="Password">
+        <div *ngIf="loginForm.get('password').invalid
+        && (loginForm.get('password').touched ||loginForm.get('password').dirty) ">
+          <div *ngIf="loginForm.get('password').getError('required')"> This field is required</div>
+          <div *ngIf="loginForm.get('password').getError('minlength')"> This field should be 8 caracters</div>
+        </div>
+      </div>
+
+      <!--      {{loginForm.value | json}}-->
+
+      <button [disabled]="loginForm.invalid"  class="btn btn-block btn-success">Login</button>
+
+<!--      <button class="btn btn-danger" type="button" (click)="onSwitchMode()">Switch To {{isLoginMode ? 'Sign Up' : 'Login'}}</button>-->
+
+
+
+    </form>
+    </div>
+  </div>
+</div>

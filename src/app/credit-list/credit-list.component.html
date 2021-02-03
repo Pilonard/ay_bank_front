@@ -1,0 +1,52 @@
+<div class="row my-3 offset-md-3 mt-5">
+  <div class="col-md-6 ">
+    <h2>Credit List</h2>
+  </div>
+
+</div>
+<div class="col-md-8 offset-2">
+<div class="row"  >
+  <div class="col-md-6  " *ngFor="let credit of credits let i = index">
+    <div class="card back mb-2" >
+      <div class="card-header">
+        <h3>Type of your Credit: {{credit.typeCredit}} </h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group ">
+          <div class="row"  >
+            <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Annuity:</strong> {{ credit.annuity}}</li>
+            </div>
+              <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Capital: </strong> {{credit.capital}}</li>
+              </div>
+                <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Duration: </strong> {{ credit.duration}}</li>
+                </div>
+
+                    <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Credit Type: </strong> {{credit.typeCredit}}</li>
+                    </div>
+            <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Salary: </strong> {{credit.salary}}</li>
+            </div>
+                  <div class="col-md-4  ">
+          <li class="list-group-item"> <strong>Credit State: </strong> {{credit.creditState}}</li>
+                  </div>
+                  </div>
+
+
+        </ul>
+      <ul *ngIf="admin === 'true'">
+        <li class="list-group-item text-center">
+
+          <button class="btn btn-primary mr-2"  [id]="credit" > <a (click)="updateCredit(i, 'Accepted')">Accept</a></button>
+          <button class="btn btn-dark mr-2"  ><a (click)="updateCredit(i, 'Deny')">Deny</a></button>
+
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

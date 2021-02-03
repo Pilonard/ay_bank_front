@@ -1,3 +1,20 @@
 .input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+.back {
+  /*background-color: white;*/
+  /*opacity: 0.8;*/
+
+  background-color: white;
+  opacity: 0.9;
+  color: black;
+}
+
+.list-group-item {
+  background-color: white;
+  opacity: 0.8;
+  border-top: 1px solid #ddd;
+  border-radius: 0;
+  color: black;
+  border: none;
+}

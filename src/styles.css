@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 .bg {
   /* The image used */
-  background-image: url("./assets/img/BankBack.jpg");
+  background-image: url("./assets/img/BankBack2.jpg");
   /* Full height */
   position:absolute;
   width:100%;
@@ -10,6 +10,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 body, html {
   height: 100%;
